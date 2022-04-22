@@ -1,7 +1,7 @@
 # What's this
 
-This project is there in order to present some principle of designing object and show you a list of guideline that, while designing object, 
-will help your brain to automate writing code leaving room for higher logic thinking.
+This project is there in order to present some principles of designing objects and show you a list of guidelines that, while designing objects, 
+will help your brain to automate writing code leaving room for higher logical thinking.
 
 # Source
 
