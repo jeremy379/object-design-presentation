@@ -1,0 +1,1 @@
+This project is there in order to present some principle of designing object
