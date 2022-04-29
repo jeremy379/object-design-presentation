@@ -101,6 +101,7 @@ class ServiceMustBeImmutable // Example: a service as a controller
 
 	/*
 	 * A service should be PREDICATBALE and therefor IMMUTABLE
+	 * A service is usually instancied once, but reused multiple times
 	 */
 	public function render()
 	{
