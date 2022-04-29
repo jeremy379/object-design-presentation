@@ -5,13 +5,6 @@ class ValueObject
 
 }
 
-// a.k.a Models
-
-class Entities
-{
-
-}
-
 
 // 1. VALID STATE IS MANDATORY
 
@@ -155,13 +148,17 @@ final class User
 
 final class Email
 {
-	public function __construct(private string $emailAddress)
+	private function __construct(private string $emailAddress) {} // ! private constructor is important
+
+	public function fromString(string $emailAddress) // Named constructor
 	{
 		if(! filter_var($this->emailAddress, FILTER_FLAG_EMAIL_UNICODE))
 		{
 			throw new InvalidArgumentException('Email invalid');
 		}
 	}
+
+	// Note: No need to toString() or value() method, only add what you need when you need them !
 }
 
 final class UserWithValidEmail
@@ -171,5 +168,36 @@ final class UserWithValidEmail
 	}
 }
 
+// Of course you can create object for composite value (like Position we saw before, or amount + currency, ...)
 
+// 5. In VO, don't inject depdencies
 
+interface OddService { public function isOdd(int $number): bool;}
+
+class Odd
+{
+	public function __construct(private int $number)
+	{
+
+	}
+
+	public function isOdd(OddService $oddService) // Pass the dependency in parameters
+	{
+		return $oddService->isOdd($this->number);
+	}
+}
+
+class OddWithoutService
+{
+	public function __construct(private int $number, private int $modulo)
+	{
+
+	}
+
+	public function isOdd() // Or pass the required data from the service in the object directly.
+	{
+		return $this->number%$this->modulo;
+	}
+}
+
+// More concrete example: the object need data from the database --> Inject the data in the object while building it.
