@@ -24,12 +24,16 @@ class Services //They perform tasks
 	}
 }
 
-// A note about using resolve() or other variant in laravel
-// Service locator a.k.a container
-
 
 class ServicesWithoutContainerUsage
 {
+	/*
+ * Whenever a service needs another service in order to perform its task, it should declare the latter explicitly
+ * as a dependency and get it injected as a constructor argument.
+ *
+ * Other hidden depdencies than resolve() : cache(), session(), now() ...
+ */
+
 	public function __construct()
 	{
 	}
@@ -41,12 +45,6 @@ class ServicesWithoutContainerUsage
 	}
 }
 
-/*
- * Whenever a service needs another service in order to perform its task, it should declare the latter explicitly
- * as a dependency and get it injected as a constructor argument.
- *
- * Other hidden depdencies than resolve() : cache(), session(), now() ...
- */
 
 
 class ServicesNullable
@@ -93,3 +91,38 @@ class NullDependency implements Dependency // A null object that can be passed a
 		return;
 	}
 }
+
+class ServiceMustBeImmutable // Example: a service as a controller
+{
+	public function __construct(private View $view)
+	{
+
+	}
+
+	/*
+	 * A service should be PREDICATBALE and therefor IMMUTABLE
+	 */
+	public function render()
+	{
+		return $this->view->render();
+	}
+}
+
+class View
+{
+	/*
+	 * View can be used by multiple controller
+	 * With service locator/container, same instance of view could be reused.
+	 * Therefor, this example would not works well, as each time the View method would be rendered, it'll add the suffix. A few calls later and you get view_suffix_suffix_suffix
+	 */
+	private $view = 'view';
+
+	public function render()
+	{
+		$this->view .= '_suffix';
+
+		return $this->view;
+	}
+}
+
+// See BMutability !
