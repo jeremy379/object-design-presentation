@@ -2,12 +2,12 @@
 
 class MutableFluent // DON'T
 {
-	public function withThat(): ImmutableFluent
+	public function withThat(): MutableFluent
 	{
 		return $this;
 	}
 
-	public function withThis(): ImmutableFluent
+	public function withThis(): MutableFluent
 	{
 		return $this;
 	}

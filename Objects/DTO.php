@@ -41,8 +41,9 @@ class MyDTOWithFiller
 
 	public static function fromRequestArray(array $data)
 	{
-		$this->myVar = $data['myVar'];
+		$instance = new self;
+		$instance->myVar = $data['myVar'];
 
-		return $this;
+		return $instance;
 	}
 }
