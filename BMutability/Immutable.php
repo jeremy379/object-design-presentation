@@ -17,6 +17,8 @@ class Bepark
 	public function withBugIncremented(): self // A modifier on an immutable object should return a modified copy  + Naming non-imperative, describe what it does: " I want this ... , but .." ==> I want this object, but with bug incremented
 	{
 		return new self($this->bugPerDay + 1); // +1 instead of ++
+
+		//Note: it's this method responsability to ensure we cannot have invalid number.
 	}
 }
 
