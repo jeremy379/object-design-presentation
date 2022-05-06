@@ -126,4 +126,6 @@ class View
 	}
 }
 
+// Solution : return (new self)->view 
+
 // See BMutability !

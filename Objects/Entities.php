@@ -1,14 +1,21 @@
 <?php
 
 // a.k.a Models
+// Entities are the application’s core objects. They represent important concepts from the business domain
 
 
 // 1. Named constructor in entities -> Allow to use domain specific keyword (vs. using save() for example)
 
 class Order
 {
+	private Uuid $uuid; // An entity has an identifier
 
-	public static function place(): Order
+	public static function place(): void // We place our order (note: we do not return anything)
+	{
+
+	}
+
+	public function totalNetAmount(): int // It exposes some useful information.
 	{
 
 	}

@@ -1,5 +1,8 @@
 <?php
 
+// Reusable concept, or domain concept in which case they represent part of an entity
+// An entity Order need ID , Date, Item that can all be value object
+
 class ValueObject
 {
 
