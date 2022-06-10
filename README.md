@@ -6,3 +6,6 @@ will help your brain to automate writing code leaving room for higher logical th
 # Source
 
 The Book Object Design style guide from Matthias Noback
+
+
+Current progress: 5. Using object (159)
