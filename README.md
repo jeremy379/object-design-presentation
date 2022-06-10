@@ -7,6 +7,10 @@ will help your brain to automate writing code leaving room for higher logical th
 
 The Book Object Design style guide from Matthias Noback
 
+Read it ;)
+https://www.amazon.fr/Object-Design-Style-Matthias-Noback/dp/1617296856/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1654861977&sr=8-1 
+
+
 # In real quick
 
 ### Usage of queries
