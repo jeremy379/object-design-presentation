@@ -7,5 +7,41 @@ will help your brain to automate writing code leaving room for higher logical th
 
 The Book Object Design style guide from Matthias Noback
 
+# In real quick
 
-Current progress: 5. Using object (159)
+### Usage of queries
+
+- Use query to get data 
+- They should have a single-type return 
+  - no ?string or other nullable 
+    - -> You can have NullObject. Page & EmptyPage for example
+    - or empty array/Collection)
+    - Throw if not found
+- If the client needs to make a computation for queried data, that could be set into the returned object, or as a query method
+- Use abstraction when crossing boundary (Api / Other BC / Database)
+- Never call a command from a query
+
+
+ A query method is a method you can use to retrieve a piece of information. 
+Query methods should have a single return type.
+You may still return null, but make sure to look for alternatives, like a null object or an empty list. 
+Possibly throw an exception instead. 
+Let query methods expose as little of an object’s internals as possible.
+
+ Define specific methods and return values for every question you want to ask and every answer you want to get. 
+Define an abstraction (an interface, free of implementation details) for these methods if the answer to the question can only be established by crossing the system’s boundaries.
+
+### Usage of commands (performing tasks)
+
+- Imperative form
+- Limit the scope of a command method, and use events to perform secondary tasks
+- When something goes wrong, throw an exception
+- Use queries to collect information and commands to take the next steps
+- Define abstractions for commands that cross system boundaries
+
+### Dividing responsibilities
+
+- Separate write models from read models
+- Create read models that are specific for their use cases
+- Create read models directly from their data source (Use direct SQL request)
+- Build read models from domain events  (Spoiler: we don't do that.)
