@@ -45,3 +45,16 @@ Define an abstraction (an interface, free of implementation details) for these m
 - Create read models that are specific for their use cases
 - Create read models directly from their data source (Use direct SQL request)
 - Build read models from domain events  (Spoiler: we don't do that.)
+
+### Changing behaviour
+
+ When you feel the need to change the behavior of a service, look for ways to make this behavior configurable through constructor arguments.
+If this isn’t an option because you want to replace a larger piece of logic, look for ways to swap out dependencies, which are also passed in as constructor arguments.
+
+ If the behavior you want to change isn’t represented by a dependency yet, extract one by introducing an abstraction: a higher level concept and an interface.
+You will then have a part you can replace, instead of modify. 
+Abstraction offers the ability to compose and decorate behaviors, so they can become more complicated without the initial service knowing about it (or being modified for it).
+
+Answers to the exercises 227
+ Don’t use inheritance to change the behavior of a service by overriding its methods. 
+Always look for solutions that use object composition. In fact, com- pletely close all your classes down for inheritance: mark them as final and make all properties and methods private, unless they are part of the public interface of the class.
