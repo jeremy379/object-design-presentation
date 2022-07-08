@@ -42,10 +42,13 @@ class ServicesWithoutContainerUsage
 	{
 		$dependency = resolve(Dependency::class); //<-- That's an hidden dependency
 		$dependency->doStuff();
+
+		$dependency->doOtherStuff(now()); //<-- now() is another hidden depdency. Inject Clock instead.
 	}
 }
 
 
+// Some bad example.
 
 class ServicesNullable
 {
@@ -126,6 +129,6 @@ class View
 	}
 }
 
-// Solution : return (new self)->view 
+// Solution : return (new self)->view
 
 // See BMutability !

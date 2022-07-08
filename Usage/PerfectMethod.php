@@ -29,6 +29,7 @@ class PerfectMethod
 
 }
 
+//Extract the attribute in VO
 class MyAttribute
 {
 	public static function fromString(string $attribute): MyAttribute

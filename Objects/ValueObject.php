@@ -66,9 +66,11 @@ class GpsPositionWithValidation
 
 class Receipt
 {
-	public function __construct(private array $amounts, private double $total) // Btw, it's not a good practice to use double for amount. Multiply by 100 and use integer instead.
+	public function __construct(private array $amounts, private float $total) // Btw, it's not a good practice to use float for amount. Multiply by 100 and use integer instead.
 	{}
 }
+
+//--> Let's get rid of the total parameters
 
 class ReceiptCompleted
 {
@@ -96,7 +98,6 @@ class ReceiptCompleted
 	}
 }
 
-// 3. Named constructor
 //No we use an object for amount to put in the array
 
 class Amount
@@ -107,16 +108,7 @@ class Amount
 	}
 }
 
-// And we want to differenciate Addition and reduction
-
-class AmountWithReduction
-{
-	public function __construct(private int $amount, bool $isReduction)
-	{
-
-	}
-}
-
+// 3. Named constructor
 // Then it may be more convenient to do
 
 class AmountWithNamedConstructor
@@ -136,6 +128,7 @@ class AmountWithNamedConstructor
 
 // 4. Use value object everywhere
 
+//Let's take an entity
 final class User
 {
     public function __construct(private string $emailAddress)
@@ -153,7 +146,7 @@ final class Email
 {
 	private function __construct(private string $emailAddress) {} // ! private constructor is important
 
-	public function fromString(string $emailAddress) // Named constructor
+	public static function fromString(string $emailAddress) // Named constructor
 	{
 		if(! filter_var($this->emailAddress, FILTER_FLAG_EMAIL_UNICODE))
 		{

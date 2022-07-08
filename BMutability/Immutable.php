@@ -29,6 +29,11 @@ var_dump('Initial value: ' . $myClass->bugPerDay());
 
 $myClassIncremented = $myClass->withBugIncremented();
 var_dump('Incremented value: ' .$myClassIncremented->bugPerDay());
+var_dump('Initial value: ' . $myClass->bugPerDay());
+
+
+
+die;
 
 // Now let's call another service and inject Bepark
 $otherClass = new DoSomething($myClass);
@@ -47,16 +52,14 @@ class DoSomething
 
 	public function doStuff(): DoSomething
 	{
-		$clone = clone $this;
-
 		$test = 0.1 + 0.2;
 
 		if($test !== 0.3)
 		{
-			$clone->bepark = $clone->bepark->withBugIncremented(); //fun with float : https://andy-carter.com/blog/don-t-trust-php-floating-point-numbers-when-equating#:~:text=Internally%20PHP%20is%20using%20a,is%20not%20unique%20to%20PHP.
+			$this->bepark = $this->bepark->withBugIncremented(); //fun with float : https://andy-carter.com/blog/don-t-trust-php-floating-point-numbers-when-equating#:~:text=Internally%20PHP%20is%20using%20a,is%20not%20unique%20to%20PHP.
 		}
 
-		return $clone;
+		return $this;
 	}
 
 	public function bepark(): Bepark
