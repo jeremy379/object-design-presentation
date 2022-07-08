@@ -28,7 +28,7 @@ echo '----' . PHP_EOL;
 $otherClass = new DoSomething($myClass);
 $otherClass->doStuff(); // We call a unrelated method
 
-var_dump($myClass->bugPerDay());
+//var_dump($myClass->bugPerDay());
 
 // -> That's the issue we got multiple time with Carbon in our project. It's why we use CarbonImmutable now.
 

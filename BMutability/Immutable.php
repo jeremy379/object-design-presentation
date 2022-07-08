@@ -32,9 +32,6 @@ var_dump('Incremented value: ' .$myClassIncremented->bugPerDay());
 var_dump('Initial value: ' . $myClass->bugPerDay());
 
 
-
-die;
-
 // Now let's call another service and inject Bepark
 $otherClass = new DoSomething($myClass);
 $otherClass = $otherClass->doStuff(); // We call a unrelated method

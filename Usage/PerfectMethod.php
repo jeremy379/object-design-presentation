@@ -83,7 +83,9 @@ class PerfectMethodWithVo
 // Multiple way to instanciate the exception
 class perfectMethodCannotPerformSomething extends Exception
 {
-	public static function attributeIsNotFound() {}
+	public static function attributeIsNotFound() {
+		return new self('the right message');
+	}
 
 	// ...
 }
