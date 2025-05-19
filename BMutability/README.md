@@ -10,7 +10,7 @@ Service must be immutable (we see that in Object/Services)
 
 Given that the state of an entity changes over time, entities are MUTABLE objects.
 Indeed, we can fill our entity and change it with methods like place(), addItem(), ... (note: these method must be :void)
-As they are identifiable, we can reuse them
+As they are identifiable (ID), we can reuse them
 
 ### Value objects
 
