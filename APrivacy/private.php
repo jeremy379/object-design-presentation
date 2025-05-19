@@ -1,13 +1,13 @@
 <?php
 
-class Izix
+class MyProduct
 {
 	private float $price = 0;
 
 	public function price(): float { return $this->price; }
 }
 
-$myClass = new Izix();
+$myClass = new MyProduct();
 
 var_dump($myClass->price);
 //var_dump($myClass->price());

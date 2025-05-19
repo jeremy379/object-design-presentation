@@ -1,16 +1,16 @@
 <?php
 
-class Izix
+class MyProduct
 {
 	public float $price = 0;
 }
 
-$myClass = new Izix();
+$myClass = new MyProduct();
 
-var_dump($myClass->price);
+var_dump($myClass->price); // 0
 
 $myClass->price = 10;
-var_dump($myClass->price);
+var_dump($myClass->price); // 10
 
 
 // Example of how it can fail
@@ -30,8 +30,8 @@ class WithInvalidValue
 	}
 }
 
-$myClass = new WithInvalidValue('Jérémy Dillenbourg 123');
-var_dump($myClass->name);
+$myClass = new WithInvalidValue('Jérémy Dillenbourg 123'); //Th digit should be removed
+var_dump($myClass->name); // Jérémy Dillenbourg
 
 $myClass->name = '12345';
-var_dump($myClass->name);
+var_dump($myClass->name); // 12345
