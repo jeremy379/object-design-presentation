@@ -1,6 +1,6 @@
 <?php
 
-class Bepark
+class MyItCompany
 {
 	private int $bugPerDay = 0;
 
@@ -22,7 +22,7 @@ class Bepark
 	}
 }
 
-$myClass = new Bepark(0);
+$myClass = new MyItCompany(0);
 $myClass->withBugIncremented();
 
 var_dump('Initial value: ' . $myClass->bugPerDay());
@@ -32,18 +32,18 @@ var_dump('Incremented value: ' .$myClassIncremented->bugPerDay());
 var_dump('Initial value: ' . $myClass->bugPerDay());
 
 
-// Now let's call another service and inject Bepark
+// Now let's call another service and inject MyItCompany
 $otherClass = new DoSomething($myClass);
 $otherClass = $otherClass->doStuff(); // We call a unrelated method
 
 var_dump('Value from initial class: ' . $myClass->bugPerDay());
-var_dump('Value from immutable copy: ' .$otherClass->bepark()->bugPerDay());
+var_dump('Value from immutable copy: ' .$otherClass->myItCompany()->bugPerDay());
 
 // -> That's the issue we got multiple time with Carbon in our project. It's why we use CarbonImmutable now.
 
 class DoSomething
 {
-	public function __construct(private Bepark $bepark)
+	public function __construct(private MyItCompany $myItCompany)
 	{
 	}
 
@@ -53,14 +53,14 @@ class DoSomething
 
 		if($test !== 0.3)
 		{
-			$this->bepark = $this->bepark->withBugIncremented(); //fun with float : https://andy-carter.com/blog/don-t-trust-php-floating-point-numbers-when-equating#:~:text=Internally%20PHP%20is%20using%20a,is%20not%20unique%20to%20PHP.
+			$this->myItCompany = $this->myItCompany->withBugIncremented(); //fun with float : https://andy-carter.com/blog/don-t-trust-php-floating-point-numbers-when-equating#:~:text=Internally%20PHP%20is%20using%20a,is%20not%20unique%20to%20PHP.
 		}
 
 		return $this;
 	}
 
-	public function bepark(): Bepark
+	public function myItCompany(): MyItCompany //hint: nowadays, we can make public readonly in the constructor, removing the needs of getter.
 	{
-		return $this->bepark;
+		return $this->myItCompany;
 	}
 }

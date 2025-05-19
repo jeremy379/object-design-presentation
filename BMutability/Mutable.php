@@ -1,6 +1,6 @@
 <?php
 
-class Bepark
+class MyItCompany
 {
 	private int $bugPerDay = 0;
 
@@ -15,7 +15,7 @@ class Bepark
 	}
 }
 
-$myClass = new Bepark();
+$myClass = new MyItCompany();
 
 var_dump('Initial amount of bug: ' . $myClass->bugPerDay());
 $myClass->addBug();
@@ -24,7 +24,7 @@ var_dump('After method call: ' . $myClass->bugPerDay());
 
 echo '----' . PHP_EOL;
 
-// Now let's call another service and inject Bepark
+// Now let's call another service and inject MyItCompany
 $otherClass = new DoSomething($myClass);
 $otherClass->doStuff(); // We call a unrelated method
 
@@ -34,7 +34,7 @@ $otherClass->doStuff(); // We call a unrelated method
 
 class DoSomething
 {
-	public function __construct(private Bepark $bepark)
+	public function __construct(private MyItCompany $myItCompany)
 	{
 	}
 
@@ -44,7 +44,7 @@ class DoSomething
 
 		if($test !== 0.3)
 		{
-			$this->bepark->addBug(); //fun with float : https://andy-carter.com/blog/don-t-trust-php-floating-point-numbers-when-equating#:~:text=Internally%20PHP%20is%20using%20a,is%20not%20unique%20to%20PHP.
+			$this->myItCompany->addBug(); //fun with float : https://andy-carter.com/blog/don-t-trust-php-floating-point-numbers-when-equating#:~:text=Internally%20PHP%20is%20using%20a,is%20not%20unique%20to%20PHP.
 		}
 	}
 }
